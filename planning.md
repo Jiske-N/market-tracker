@@ -23,7 +23,7 @@ Components:
 
 Back End:
 - x@apollo/server
-- bcrypt or argon2
+- xbcrypt or argon2
 - xcors - prevent unauthorized access from different origins
 - xdotenv - requiredish
 - xexpress - required
