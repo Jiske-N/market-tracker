@@ -1,5 +1,7 @@
-// express boilerplate
-const express = require("express");
+import express from "express";
+import "dotenv/config";
+
+// express
 const app = express();
 const port = 6001;
 
