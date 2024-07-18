@@ -1,4 +1,5 @@
 import { User } from "../models";
+import { signToken, AuthenticationError } from "../utilities/auth";
 
 export const resolvers = {
     Query: {

@@ -1,7 +1,8 @@
 import express from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-const { authMiddleware } = require("./utils/auth");
+import { authMiddleware } from "./utilities/auth";
+
 // ________________
 // import "dotenv/config";
 // import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
@@ -10,6 +11,7 @@ const { authMiddleware } = require("./utils/auth");
 // __________________
 
 import { typeDefs, resolvers } from "./schema";
+
 const db = require("./config/connection");
 
 const PORT = process.env.PORT || 6001;
@@ -26,11 +28,11 @@ const startApolloServer = async () => {
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
 
-    // Serve up static assets
-    app.use(
-        "/images",
-        express.static(path.join(__dirname, "../client/images"))
-    );
+    // // Serve up static assets
+    // app.use(
+    //     "/images",
+    //     express.static(path.join(__dirname, "../client/images"))
+    // );
 
     app.use(
         "/graphql",
@@ -39,13 +41,13 @@ const startApolloServer = async () => {
         })
     );
 
-    if (process.env.NODE_ENV === "production") {
-        app.use(express.static(path.join(__dirname, "../client/dist")));
+    // if (process.env.NODE_ENV === "production") {
+    //     app.use(express.static(path.join(__dirname, "../client/dist")));
 
-        app.get("*", (req, res) => {
-            res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-        });
-    }
+    //     app.get("*", (req, res) => {
+    //         res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+    //     });
+    // }
 
     db.once("open", () => {
         app.listen(PORT, () => {
