@@ -1,8 +1,22 @@
+import { createTheme } from "@mui/material/styles"
+import { useMemo } from "react"
+import { themeSettings } from "./theme"
+// theme related unsure if functioning
+import { CssBaseline, ThemeProvider, useTheme } from "@mui/material"
+
 function App() {
+  // theme related unsure if functioning
+  const theme = useMemo(() => createTheme(themeSettings), [])
+  const {palette } = useTheme()
+  
   return (
     <>
       <div className='app'>
-        <h1>Hello</h1>
+        <ThemeProvider theme={theme}>
+          <CssBaseline 
+          />
+          <h1 color={palette.grey[300]}>Hello</h1>
+        </ThemeProvider>
       </div>
     </>
   )
