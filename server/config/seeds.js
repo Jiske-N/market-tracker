@@ -1,9 +1,9 @@
 import database from "./connection.js";
 import { User } from "../models/index.js";
-// const cleanDB = require("./cleanDB");
+import eraseDatabaseTable from "./eraseDatabaseTable.js";
 
 database.once("open", async () => {
-    //   await cleanDB('User', 'users');
+    await eraseDatabaseTable("User", "users");
 
     await User.create({
         firstName: "Susy",
