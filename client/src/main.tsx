@@ -14,22 +14,44 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./pages/Home.tsx";
+
 import Welcome from "./pages/Welcome.tsx";
+import Dashboard from "./pages/Dashboard.tsx";
+import Discover from "./pages/Discover.tsx";
+import Login from "./pages/Login.tsx";
+import SignUp from "./pages/SignUp.tsx";
+import AccountSettings from "./pages/AccountSettings.tsx";
+// import PageNotFound from "./pages/PageNotFound.tsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
-        // error: <NoMatch/>,
+        // error: <PageNotFound/>,
         children: [
             {
                 index: true,
                 element: <Welcome />,
             },
             {
-                path: "/home",
-                element: <Home />,
+                path: "/dashboard",
+                element: <Dashboard />,
+            },
+            {
+                path: "/discover",
+                element: <Discover />,
+            },
+            {
+                path: "/log-in",
+                element: <Login />,
+            },
+            {
+                path: "/sign-up",
+                element: <SignUp />,
+            },
+            {
+                path: "/account-settings",
+                element: <AccountSettings />,
             },
         ],
     },
