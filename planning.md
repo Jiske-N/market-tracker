@@ -6,20 +6,20 @@ x = installed
 Front End:
 - Front end:
 - @appolo/client - required
-- @reduxjs/toolkit
+- x@reduxjs/toolkit
 - formik - simplify forms in conjunction with yup *potentially slow
 - graphql -required
 - jwt-decode -required
 - xreact - required
 - xreact-dom - required
-- react-router-dom - required
+- xreact-router-dom - required
 - recharts - charts and graphs
 - yup - form validation against schema on front end
 
 Components:
-- @mui/icons-material?
-- @mui/material?
-- @mui/x-data-grid?
+- x@mui/icons-material?
+- x@mui/material?
+- x@mui/x-data-grid?
 
 Back End:
 - x@apollo/server
