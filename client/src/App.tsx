@@ -1,22 +1,29 @@
-import { createTheme } from "@mui/material/styles"
-import { useMemo } from "react"
-import { themeSettings } from "./theme"
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+// import { useMemo } from "react"
+// import { themeSettings } from "./theme"
 // theme related unsure if functioning
-import { CssBaseline, ThemeProvider, useTheme } from "@mui/material"
 import { Outlet } from "react-router-dom"
+import Navbar from "./components/Navbar"
+import getDesignTokens from './theme/theme';
+// import { useThemeContext } from "./theme/ThemeContextProvider"
+
+// const darkTheme = createTheme({
+//   palette: {
+//     mode: 'dark',
+//   },
+// });
 
 function App() {
-  // theme related unsure if functioning
-  const theme = useMemo(() => createTheme(themeSettings), [])
-  const {palette } = useTheme()
+  const darkModeTheme = createTheme(getDesignTokens('dark'));
   
   return (
     <>
       <div className='app'>
-        <ThemeProvider theme={theme}>
-          <CssBaseline 
-          />
-          <h1 color={palette.grey[300]}>Hello</h1>
+        <ThemeProvider theme={darkModeTheme}>
+          <CssBaseline />
+          <Navbar/>
+          {/* <h1 color={palette.grey[300]}>Hello</h1> */}
           <Outlet/>
         </ThemeProvider>
       </div>
