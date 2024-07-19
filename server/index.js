@@ -1,20 +1,20 @@
 import express from "express";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import { authMiddleware } from "./utilities/auth";
+import database from "./config/connection.js";
+import { typeDefs, resolvers } from "./schemas/index.js";
+import { authMiddleware } from "./utilities/auth.js";
+import "dotenv/config";
 
 // ________________
-// import "dotenv/config";
 // import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 // import http from "http";
 // import cors from "cors";
 // __________________
 
-import { typeDefs, resolvers } from "./schema";
+// const database = require("./config/connection");
 
-const db = require("./config/connection");
-
-const PORT = process.env.PORT || 6001;
+const PORT = process.env.PORT || 9001;
 const app = express();
 const apolloServer = new ApolloServer({
     typeDefs,
@@ -49,12 +49,18 @@ const startApolloServer = async () => {
     //     });
     // }
 
-    db.once("open", () => {
+    database.once("open", () => {
         app.listen(PORT, () => {
             console.log(`API server running on port ${PORT}!`);
             console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
         });
     });
+    // database.then(() => {
+    //     app.listen(PORT, () => {
+    //         console.log(`API server running on port ${PORT}!`);
+    //         console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+    //     });
+    // });
 };
 
 // Call the async function to start the server

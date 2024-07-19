@@ -1,5 +1,5 @@
-import { User } from "../models";
-import { signToken, AuthenticationError } from "../utilities/auth";
+import { User } from "../models/index.js";
+import { signToken, AuthenticationError } from "../utilities/auth.js";
 
 export const resolvers = {
     Query: {
