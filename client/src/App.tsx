@@ -3,6 +3,7 @@ import { useMemo } from "react"
 import { themeSettings } from "./theme"
 // theme related unsure if functioning
 import { CssBaseline, ThemeProvider, useTheme } from "@mui/material"
+import { Outlet } from "react-router-dom"
 
 function App() {
   // theme related unsure if functioning
@@ -16,6 +17,7 @@ function App() {
           <CssBaseline 
           />
           <h1 color={palette.grey[300]}>Hello</h1>
+          <Outlet/>
         </ThemeProvider>
       </div>
     </>
