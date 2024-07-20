@@ -1,27 +1,20 @@
-import { createTheme } from "@mui/material/styles"
-import { useMemo } from "react"
-import { themeSettings } from "./theme"
-// theme related unsure if functioning
-import { CssBaseline, ThemeProvider, useTheme } from "@mui/material"
-import { Outlet } from "react-router-dom"
+import CssBaseline from "@mui/material/CssBaseline";
+import { Outlet } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import { ThemeContextProvider } from "./theme/index";
 
 function App() {
-  // theme related unsure if functioning
-  const theme = useMemo(() => createTheme(themeSettings), [])
-  const {palette } = useTheme()
-  
-  return (
-    <>
-      <div className='app'>
-        <ThemeProvider theme={theme}>
-          <CssBaseline 
-          />
-          <h1 color={palette.grey[300]}>Hello</h1>
-          <Outlet/>
-        </ThemeProvider>
-      </div>
-    </>
-  )
+    return (
+        <>
+            <div className="app">
+                <ThemeContextProvider>
+                    <CssBaseline />
+                    <Navbar />
+                    <Outlet />
+                </ThemeContextProvider>
+            </div>
+        </>
+    );
 }
 
-export default App
+export default App;
