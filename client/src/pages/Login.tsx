@@ -1,6 +1,8 @@
+import LoginSignupStructure from "../components/LoginSignupStructure";
+
 const Login = () => {
     return (
-        <h1>Login</h1>
+        <LoginSignupStructure/>
     )
 };
 
