@@ -1,7 +1,17 @@
+// // validation to be uncommented on deployment
+// export function validatePassword(submission: string) {
+//     const regex =
+//         /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+//     if (!regex.test(String(submission))) {
+//         return false;
+//     } else {
+//         return true;
+//     }
+// }
+
+// temporary less annoying validation for development
 export function validatePassword(submission: string) {
-    const regex =
-        /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    if (!regex.test(String(submission))) {
+    if (submission.length < 2) {
         return false;
     } else {
         return true;
