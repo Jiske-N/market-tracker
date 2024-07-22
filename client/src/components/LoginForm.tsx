@@ -148,32 +148,77 @@
 
 // export default LoginForm;
 
-import * as React from 'react'
+// _______________________________________________________________________
 
-interface FormElements extends HTMLFormControlsCollection {
-  usernameInput: HTMLInputElement
-}
-interface LoginFormElement extends HTMLFormElement {
-  readonly elements: FormElements
+// import * as React from 'react'
+
+// interface FormElements extends HTMLFormControlsCollection {
+//   usernameInput: HTMLInputElement
+// }
+// interface LoginFormElement extends HTMLFormElement {
+//   readonly elements: FormElements
+// }
+
+// export default function LoginForm({
+//   onSubmitUsername,
+// }: {
+//   onSubmitUsername: (username: string) => void
+// }) {
+//   function handleSubmit(event: React.FormEvent<LoginFormElement>) {
+//     event.preventDefault()
+//     onSubmitUsername(event.currentTarget.elements.usernameInput.value)
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <div>
+//         <label htmlFor="usernameInput">Username:</label>
+//         <input id="usernameInput" type="text" />
+//       </div>
+//       <button type="submit">Submit</button>
+//     </form>
+//   )
+// }
+
+// _______________________________________________________________________
+import React from "react"
+import { useForm, Resolver } from "react-hook-form"
+
+type FormValues = {
+  firstName: string
+  lastName: string
+  email: string
+  password: string
 }
 
-export default function LoginForm({
-  onSubmitUsername,
-}: {
-  onSubmitUsername: (username: string) => void
-}) {
-  function handleSubmit(event: React.FormEvent<LoginFormElement>) {
-    event.preventDefault()
-    onSubmitUsername(event.currentTarget.elements.usernameInput.value)
+const resolver: Resolver<FormValues> = async (values) => {
+  return {
+    values: values.firstName ? values : {},
+    errors: !values.firstName
+      ? {
+          firstName: {
+            type: "required",
+            message: "First Name is required.",
+          },
+        }
+      : {},
   }
+}
+
+export default function LoginForm() {
+  const { register, handleSubmit, formState: { errors },} = useForm<FormValues>({resolver})
+  const onSubmit = handleSubmit((data) => console.log(data))
+
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="usernameInput">Username:</label>
-        <input id="usernameInput" type="text" />
-      </div>
-      <button type="submit">Submit</button>
+    <form onSubmit={onSubmit}>
+      <input {...register("firstName")} placeholder="First Name" />
+      {errors?.firstName && <p>{errors.firstName.message}</p>}
+      <input {...register("lastName")} placeholder="Last Name"/>
+      <input type="email" {...register("email")} placeholder="Email"/>
+      <input type="password" {...register("password")} placeholder="Password"/>
+
+      <input type="submit" />
     </form>
   )
 }

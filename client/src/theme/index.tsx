@@ -5,9 +5,15 @@ import { AppLightTheme, AppDarkTheme } from "./theme";
 
 export const ThemeContext = createContext<IThemeContext | null>(null);
 
-export const ThemeContextProvider: React.FunctionComponent<
-    React.PropsWithChildren
-> = ({ children }) => {
+type Props = {
+    children: React.ReactNode
+}
+
+export const ThemeContextProvider = ({ children }: Props) => {
+
+// export const ThemeContextProvider: React.FunctionComponent<
+//     React.PropsWithChildren
+// > = ({ children }) => {
     const [themeMode, setThemeMode] = useState<ThemeMode>(ThemeMode.System);
     const [theme, setTheme] = useState<Theme>(AppLightTheme);
 
