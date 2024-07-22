@@ -1,6 +1,6 @@
 import ColumnFlexJustifyAlignCenter from "./ColumnFlexJustifyAlignCenter";
-import LoginForm from "./LoginForm";
 import RowFlexBetweenCenter from "./RowFlexBetweenCenter";
+import SignUpForm from "./SignUpForm";
 
 const LoginSignupStructure = () => {
     return (
@@ -9,7 +9,7 @@ const LoginSignupStructure = () => {
                 <h1>A cool background</h1>
             </ColumnFlexJustifyAlignCenter>
             <ColumnFlexJustifyAlignCenter flexGrow="1" minWidth="500px" minHeight='100vh'>
-                <LoginForm/>
+                <SignUpForm/>
             </ColumnFlexJustifyAlignCenter>
         </RowFlexBetweenCenter>
     );
