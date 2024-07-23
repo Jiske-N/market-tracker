@@ -49,7 +49,9 @@ export const resolvers = {
                 throw AuthenticationError;
             }
 
+            console.log("ser-resolvers.js user", user);
             const token = signToken(user);
+            console.log("ser-resolvers.js token", token);
 
             return { token, user };
         },
