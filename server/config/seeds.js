@@ -3,6 +3,9 @@ import { User, OwnedShares, Portfolio, Stock } from "../models/index.js";
 import eraseDatabaseTable from "./eraseDatabaseTable.js";
 
 database.once("open", async () => {
+    await eraseDatabaseTable("Stock", "stocks");
+    await eraseDatabaseTable("OwnedShares", "ownedshares");
+    await eraseDatabaseTable("Portfolio", "portfolios");
     await eraseDatabaseTable("User", "users");
 
     const stocks = await Stock.insertMany([

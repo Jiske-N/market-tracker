@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
-import Portfolio from "./Portfolio.js";
 
 const { Schema } = mongoose;
 
@@ -31,7 +30,12 @@ const userSchema = new Schema({
         minlength: 5,
     },
     darkMode: Boolean,
-    portfolios: [Portfolio.schema],
+    portfolios: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: "Portfolio",
+        },
+    ],
     // valuations: [Valuation.schema],
 });
 

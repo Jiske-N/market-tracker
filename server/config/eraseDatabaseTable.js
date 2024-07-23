@@ -1,8 +1,8 @@
-import { User } from "../models/index.js";
+import { User, Stock, OwnedShares, Portfolio } from "../models/index.js";
 import database from "./connection.js";
 
 // need to add all models to here and import manually
-const models = { User };
+const models = { User, Stock, OwnedShares, Portfolio };
 
 const eraseDatabaseTable = async (modelName, collectionName) => {
     try {
