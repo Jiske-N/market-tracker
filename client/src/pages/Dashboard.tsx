@@ -1,9 +1,9 @@
-import Navbar from '../components/Navbar'
+import AddStockForm from '../components/AddStockForm';
 
 const Dashboard = () => {
     return (
         <>
-        <Navbar/>
+        <AddStockForm/>
         <h1>Dashboard</h1>
         </>
     )

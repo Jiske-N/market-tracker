@@ -1,8 +1,7 @@
 import { useForm, Resolver } from "react-hook-form";
 import { validateTicker } from "../utilities/helpers";
-// import { useMutation } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 // import {  } from "../utilities/mutations";
-import "dotenv/config";
 
 type FormValues = {
     ticker:string
@@ -42,23 +41,28 @@ export default function AddStockForm() {
         try {
             console.log("AddStockForm.tsx pre api request");
             const ticker: string = data.ticker
-            const twelveDataApiKey = process.env.TWELVEDATA_API_KEY
-            const twelveDataUrl : string = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2&type=none"`
-
-            const data2 = null;
-
-            const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
-            
-            xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === this.DONE) {
-                    console.log(this.responseText);
-                }
+                        const queryResponse = await getApiStock({
+                variables: {
+                    ticker: data.ticker,
+                },
             });
+            // const twelveDataApiKey = process.env.TWELVEDATA_API_KEY
+            // const twelveDataUrl : string = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2&type=none"`
+
+            // const data2 = null;
+
+            // const xhr = new XMLHttpRequest();
+            // xhr.withCredentials = true;
             
-            xhr.open("GET", twelveDataUrl);
+            // xhr.addEventListener("readystatechange", function () {
+            //     if (this.readyState === this.DONE) {
+            //         console.log(this.responseText);
+            //     }
+            // });
             
-            xhr.send(data2);
+            // xhr.open("GET", twelveDataUrl);
+            
+            // xhr.send(data2);
                 
 
             // const twelveDataGet = await 
