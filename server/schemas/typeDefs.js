@@ -1,15 +1,40 @@
 export const typeDefs = `#graphql
+type Auth {
+token: ID
+user: User
+}
+
+type HistoricPrice {
+    date: Date
+    closingPrice: Float
+}
+
+type OwnedShares {
+    _id: ID
+    purchasePrice: Number
+    quantity: Number
+    stock: [Stock]
+}
+
+type Portfolio {
+_id: ID
+portfolioStocks: [OwnedShares]
+}
+
+type Stock {
+    _id: ID
+    ticker: String
+    exchange: String
+    historicPrices: [HistoricPrice]
+}
+
 type User {
 _id: ID
 firstName: String
 lastName: String
 email: String
 darkMode: Boolean
-}
-
-type Auth {
-token: ID
-user: User
+portfolios: [Portfolio]
 }
 
 type Query {
