@@ -1,6 +1,8 @@
 import React from "react"
 import { useForm, Resolver } from "react-hook-form"
 import { validateEmail, validatePassword } from "../utilities/helpers"
+import { useMutation } from "@apollo/client"
+import { ADD_USER } from "../utilities/mutations"
 
 type FormValues = {
   firstName: string
@@ -67,11 +69,25 @@ const resolver: Resolver<FormValues> = async (values) => {
 
 export default function SignUpForm() {
   const { register, handleSubmit, formState: { errors },} = useForm<FormValues>({resolver})
-  const onSubmit = handleSubmit((data) => console.log(data))
+  // const onSubmit = handleSubmit((data) => console.log(data))
+  const [addUser] = useMutation(ADD_USER)
 
-  // const onSubmit = handleSubmit((data) => {
-  //   const 
-  // })
+  const onSubmit = handleSubmit(async (data) => {
+    try {
+      const mutationResponse = await addUser({
+        variables: {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          email: data.email,
+          password: data.password,
+                  }
+      })
+      const token = mutationResponse.data.addUser.token
+      Auth.login(token)
+    } catch (error) {
+      console.log(error)
+    }
+  })
 
 //   const handleFormSubmit = async (event) => {
 //     event.preventDefault();

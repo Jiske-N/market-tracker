@@ -19,6 +19,7 @@ export const resolvers = {
 
     Mutation: {
         addUser: async (parent, args) => {
+            console.log("ser-resolvers.js", args);
             const user = await User.create(args);
             const token = signToken(user);
 
