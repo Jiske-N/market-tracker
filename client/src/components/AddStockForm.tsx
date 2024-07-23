@@ -41,7 +41,7 @@ export default function AddStockForm() {
         try {
             console.log("AddStockForm.tsx pre api request");
             const ticker: string = data.ticker
-                        const queryResponse = await getApiStock({
+                        const queryResponse = await ({
                 variables: {
                     ticker: data.ticker,
                 },
