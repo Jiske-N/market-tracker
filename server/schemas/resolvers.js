@@ -55,5 +55,29 @@ export const resolvers = {
 
             return { token, user };
         },
+        addStock: async (parent, { ticker }) => {
+            console.log("ser-resolvers.js args", ticker);
+            const twelveDataApiKey = process.env.TWELVEDATA_API_KEY;
+            const twelveDataUrl = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2&type=none"`;
+
+            const data = null;
+
+            const xhr = new XMLHttpRequest();
+            xhr.withCredentials = true;
+
+            xhr.addEventListener("readystatechange", function () {
+                if (this.readyState === this.DONE) {
+                    console.log(this.responseText);
+                }
+            });
+
+            xhr.open("GET", twelveDataUrl);
+
+            xhr.send(data);
+
+            const stock = await Stock.create(data);
+
+            return true;
+        },
     },
 };
