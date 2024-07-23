@@ -11,7 +11,7 @@
 
 // temporary less annoying validation for development
 export function validatePassword(submission: string) {
-    if (submission.length < 2) {
+    if (submission.length < 5) {
         return false;
     } else {
         return true;
