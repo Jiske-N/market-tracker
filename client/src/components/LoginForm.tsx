@@ -50,11 +50,11 @@ export default function LoginForm() {
         handleSubmit,
         formState: { errors },
     } = useForm<FormValues>({ resolver });
-    const [login] = useMutation(LOGIN);
+    const [login, { error }] = useMutation(LOGIN);
 
     const onSubmit = handleSubmit(async (data) => {
         try {
-            console.log("signupform.tsx pre mutation response");
+            console.log("loginform.tsx pre mutation response");
             const mutationResponse = await login({
                 variables: {
                     email: data.email,
@@ -62,8 +62,8 @@ export default function LoginForm() {
                 },
             });
             console.log(mutationResponse, typeof mutationResponse);
-            const token = mutationResponse.data.addUser
-                ? mutationResponse.data.addUser.token
+            const token: string = mutationResponse.data.login
+                ? mutationResponse.data.login.token
                 : null;
 
             if (token) {
@@ -89,7 +89,13 @@ export default function LoginForm() {
                 placeholder="Password"
             />
             {errors?.password && <p>{errors.password.message}</p>}
-
+            {error ? (
+                <div>
+                    <p className="error-text">
+                        Username password combination does not exist.
+                    </p>
+                </div>
+            ) : null}
             <input type="submit" />
         </form>
     );

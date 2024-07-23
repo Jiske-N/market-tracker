@@ -80,7 +80,7 @@ export default function SignUpForm() {
 
     const onSubmit = handleSubmit(async (data) => {
         try {
-          console.log('signupform.tsx pre mutation response')
+            console.log("signupform.tsx pre mutation response");
             const mutationResponse = await addUser({
                 variables: {
                     firstName: data.firstName,
@@ -89,13 +89,13 @@ export default function SignUpForm() {
                     password: data.password,
                 },
             });
-            console.log(mutationResponse, typeof mutationResponse)
-            const token = mutationResponse.data.addUser
+            console.log(mutationResponse, typeof mutationResponse);
+            const token: string = mutationResponse.data.addUser
                 ? mutationResponse.data.addUser.token
                 : null;
-                
-                if (token) {
-              console.log("type of token", typeof token);
+
+            if (token) {
+                console.log("type of token", typeof token);
                 Auth.login(token);
             } else {
                 console.log("Token not found in response");
