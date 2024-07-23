@@ -80,6 +80,7 @@ export default function SignUpForm() {
 
     const onSubmit = handleSubmit(async (data) => {
         try {
+          console.log('signupform.tsx pre mutation response')
             const mutationResponse = await addUser({
                 variables: {
                     firstName: data.firstName,
@@ -88,6 +89,7 @@ export default function SignUpForm() {
                     password: data.password,
                 },
             });
+            console.log(mutationResponse, typeof mutationResponse)
             const token = mutationResponse.data.addUser
                 ? mutationResponse.data.addUser.token
                 : null;

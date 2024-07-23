@@ -19,9 +19,11 @@ export const resolvers = {
 
     Mutation: {
         addUser: async (parent, args) => {
-            console.log("ser-resolvers.js", args);
+            console.log("ser-resolvers.js args", args);
             const user = await User.create(args);
+            console.log("ser-resolvers.js user", user);
             const token = signToken(user);
+            console.log("ser-resolvers.js token", token);
 
             return { token, user };
         },
