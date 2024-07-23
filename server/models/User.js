@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
-import Portfolio from "./Portfolio";
+import Portfolio from "./Portfolio.js";
 
 const { Schema } = mongoose;
 
