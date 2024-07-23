@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import mongoose from "mongoose";
+import Portfolio from "./Portfolio";
 
 const { Schema } = mongoose;
 
@@ -30,8 +31,7 @@ const userSchema = new Schema({
         minlength: 5,
     },
     darkMode: Boolean,
-    // portfolio: Portfolio.schema,
-    // speculativePortfolio: SpeculativePortfolio.schema,
+    portfolios: [Portfolio.schema],
     // valuations: [Valuation.schema],
 });
 
