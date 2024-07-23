@@ -7,7 +7,7 @@ const portfolioSchema = new Schema({
     portfolioStocks: [
         {
             type: Schema.Types.ObjectId,
-            ref: "PortfolioStock",
+            ref: "OwnedShares",
         },
     ],
 });
