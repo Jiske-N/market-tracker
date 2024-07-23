@@ -9,7 +9,7 @@ const LoginSignupStructure = () => {
 
     return (
         <RowFlexBetweenCenter>
-            <ColumnFlexJustifyAlignCenter flexGrow="2.2">
+            <ColumnFlexJustifyAlignCenter flexGrow="2.2" sx={{bgcolor: "background.alt"}}>
                 <h1>A cool background</h1>
             </ColumnFlexJustifyAlignCenter>
             <ColumnFlexJustifyAlignCenter
