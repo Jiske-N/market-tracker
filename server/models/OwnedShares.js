@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
@@ -19,4 +19,4 @@ const ownedSharesSchema = new Schema({
 
 const OwnedShares = mongoose.model("OwnedShares", ownedSharesSchema);
 
-module.exports = OwnedShares;
+export default OwnedShares;
