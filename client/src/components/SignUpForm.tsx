@@ -88,8 +88,17 @@ export default function SignUpForm() {
                     password: data.password,
                 },
             });
-            const token = mutationResponse.data.addUser.token;
-            console.log("type of token", typeof token);
+            const token = mutationResponse.data.addUser
+                ? mutationResponse.data.addUser.token
+                : null;
+                
+                if (token) {
+              console.log("type of token", typeof token);
+                Auth.login(token);
+            } else {
+                console.log("Token not found in response");
+            }
+
             Auth.login(token);
         } catch (error) {
             console.log(error);
