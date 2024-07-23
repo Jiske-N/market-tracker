@@ -27,3 +27,11 @@ export function validateEmail(submission: string) {
         return true;
     }
 }
+
+export function validateTicker(submission: string) {
+    if (submission.length > 4) {
+        return false;
+    } else {
+        return true;
+    }
+}
