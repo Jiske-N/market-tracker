@@ -5,14 +5,14 @@ user: User
 }
 
 type HistoricPrice {
-    date: Date
+    date: String
     closingPrice: Float
 }
 
 type OwnedShares {
     _id: ID
-    purchasePrice: Number
-    quantity: Number
+    purchasePrice: Float
+    quantity: Int
     stock: [Stock]
 }
 
@@ -23,6 +23,7 @@ portfolioStocks: [OwnedShares]
 
 type Stock {
     _id: ID
+    name: String
     ticker: String
     exchange: String
     historicPrices: [HistoricPrice]
@@ -45,4 +46,5 @@ type Mutation {
 addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
 updateUser(firstName: String, lastName: String, email: String, password: String, darkMode: Boolean): User
 login(email: String!, password: String!): Auth
+updateStock(ticker: String!): HistoricPrice
 }`;

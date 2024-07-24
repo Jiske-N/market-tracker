@@ -1,5 +1,7 @@
-import { User } from "../models/index.js";
+import mongoose from "mongoose";
+import { User, Portfolio, OwnedShares, Stock } from "../models/index.js";
 import { signToken, AuthenticationError } from "../utilities/auth.js";
+import { getCurrentDateTime } from "../utilities/helpers.js";
 
 export const resolvers = {
     Query: {
@@ -55,29 +57,42 @@ export const resolvers = {
 
             return { token, user };
         },
-        addStock: async (parent, { ticker }) => {
-            console.log("ser-resolvers.js args", ticker);
+        updateStock: async (parent, { ticker }) => {
+            // get date from helper in the correct format for the api
+            const endDate = getCurrentDateTime();
             const twelveDataApiKey = process.env.TWELVEDATA_API_KEY;
-            const twelveDataUrl = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2&type=none"`;
 
-            const data = null;
+            // potentially tweak the interval, also maybe set the startDate
+            const twelveDataUrl = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=${endDate}&start_date=2014-07-23 19:03:00&format=JSON&dp=2`;
 
-            const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            const twelveDataResponse = await fetch(twelveDataUrl);
+            const historicalData = await twelveDataResponse.json();
 
-            xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === this.DONE) {
-                    console.log(this.responseText);
-                }
-            });
+            const exchange = historicalData.meta.exchange;
+            const sortedHistoricalPrices = historicalData.values.map(
+                (historicPrice) => ({
+                    // give each historic price an id
+                    _id: new mongoose.Types.ObjectId(),
+                    // only keep the date portion of datetime
+                    date: historicPrice.datetime.slice(0, 10),
+                    closingPrice: historicPrice.close,
+                })
+            );
 
-            xhr.open("GET", twelveDataUrl);
+            const stock = await Stock.findOneAndUpdate(
+                { ticker: ticker },
+                { exchange: exchange, historicPrices: sortedHistoricalPrices },
+                { new: true }
+            );
 
-            xhr.send(data);
+            // can be used to add a new stock, I don't think I will used it based on the current plan but I'll leave it here now in case
+            // const newStock = await Stock.create({
+            //     ticker: ticker,
+            //     exchange: exchange,
+            //     historicPrices: sortedHistoricalData,
+            // });
 
-            const stock = await Stock.create(data);
-
-            return true;
+            return stock;
         },
     },
 };

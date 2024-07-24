@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const stock = new Schema({
+    name: {
+        type: String,
+    },
     ticker: {
         type: String,
         required: true,
@@ -12,7 +15,7 @@ const stock = new Schema({
     },
     historicPrices: [
         {
-            date: Date,
+            date: String,
             closingPrice: Number,
         },
     ],

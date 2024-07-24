@@ -1,3 +1,4 @@
+import mongoose from "mongoose";
 import database from "./connection.js";
 import { User, OwnedShares, Portfolio, Stock } from "../models/index.js";
 import eraseDatabaseTable from "./eraseDatabaseTable.js";
@@ -8,32 +9,25 @@ database.once("open", async () => {
     await eraseDatabaseTable("Portfolio", "portfolios");
     await eraseDatabaseTable("User", "users");
 
-    const stocks = await Stock.insertMany([
-        {
-            ticker: "NVDA",
-            exchange: "NASDAQ",
-            historicPrices: [
-                { date: "2024-07-01", closingPrice: 123.54 },
-                { date: "2024-07-01", closingPrice: 123.54 },
-                { date: "2024-07-01", closingPrice: 123.54 },
-                { date: "2024-07-01", closingPrice: 123.54 },
-                { date: "2024-07-01", closingPrice: 123.54 },
-            ],
-        },
-        {
-            ticker: "AAPL",
-            exchange: "NASDAQ",
-            historicPrices: [
-                { date: "2024-07-01", closingPrice: 223.96 },
-                { date: "2024-07-01", closingPrice: 223.96 },
-                { date: "2024-07-01", closingPrice: 223.96 },
-                { date: "2024-07-01", closingPrice: 223.96 },
-                { date: "2024-07-01", closingPrice: 223.96 },
-            ],
-        },
-    ]);
+    const stockSeeds = async () => {
+        const stockSeedUrl = "https://api.twelvedata.com/stocks?country=US";
+        const response = await fetch(stockSeedUrl);
+        const seedData = await response.json();
 
-    console.log("stocks seeded");
+        const sortedSeedData = seedData.data.map((stock) => ({
+            // give each stock an id
+            _id: new mongoose.Types.ObjectId(),
+            ticker: stock.symbol,
+            exchange: stock.exchange,
+            name: stock.name,
+        }));
+        return sortedSeedData;
+    };
+
+    const stockSeedData = await stockSeeds();
+    const stocks = await Stock.insertMany(stockSeedData);
+
+    console.log(`${stockSeedData.length} stocks seeded`);
 
     const ownedShares = await OwnedShares.insertMany([
         {

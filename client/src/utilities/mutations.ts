@@ -31,3 +31,13 @@ export const LOGIN = gql`
         }
     }
 `;
+
+export const UPDATE_STOCK = gql`
+    mutation updateStock($ticker: String!) {
+        updateStock(ticker: $ticker) {
+            # success
+            date
+            closingPrice
+        }
+    }
+`;
