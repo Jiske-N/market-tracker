@@ -32,13 +32,12 @@ export const LOGIN = gql`
     }
 `;
 
-export const LOGIN = gql`
-    mutation login($email: String!, $password: String!) {
-        login(email: $email, password: $password) {
-            token
-            user {
-                _id
-            }
+export const UPDATE_STOCK = gql`
+    mutation updateStock($ticker: String!) {
+        updateStock(ticker: $ticker) {
+            # success
+            date
+            closingPrice
         }
     }
 `;
