@@ -12,7 +12,7 @@ const stock = new Schema({
     },
     historicPrices: [
         {
-            date: Date,
+            date: String,
             closingPrice: Number,
         },
     ],
