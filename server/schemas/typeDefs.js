@@ -23,6 +23,7 @@ portfolioStocks: [OwnedShares]
 
 type Stock {
     _id: ID
+    name: String
     ticker: String
     exchange: String
     historicPrices: [HistoricPrice]

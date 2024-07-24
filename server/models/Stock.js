@@ -3,6 +3,9 @@ import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 const stock = new Schema({
+    name: {
+        type: String,
+    },
     ticker: {
         type: String,
         required: true,
