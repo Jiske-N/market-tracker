@@ -1,4 +1,4 @@
-import { User } from "../models/index.js";
+import { User, Portfolio, OwnedShares, Stock } from "../models/index.js";
 import { signToken, AuthenticationError } from "../utilities/auth.js";
 
 export const resolvers = {
@@ -55,27 +55,31 @@ export const resolvers = {
 
             return { token, user };
         },
-        addStock: async (parent, { ticker }) => {
-            console.log("ser-resolvers.js args", ticker);
+        updateStock: async (parent, { ticker }) => {
+            console.log("ser-resolver-upd-stock ticker", ticker);
             const twelveDataApiKey = process.env.TWELVEDATA_API_KEY;
             const twelveDataUrl = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2&type=none"`;
 
-            const data = null;
+            const historicalData = await fetch(twelveDataUrl);
 
-            const xhr = new XMLHttpRequest();
-            xhr.withCredentials = true;
+            console.log(historicalData);
 
-            xhr.addEventListener("readystatechange", function () {
-                if (this.readyState === this.DONE) {
-                    console.log(this.responseText);
-                }
-            });
+            // const data = null;
 
-            xhr.open("GET", twelveDataUrl);
+            // const xhr = new XMLHttpRequest();
+            // xhr.withCredentials = true;
 
-            xhr.send(data);
+            // xhr.addEventListener("readystatechange", function () {
+            //     if (this.readyState === this.DONE) {
+            //         console.log(this.responseText);
+            //     }
+            // });
 
-            const stock = await Stock.create(data);
+            // xhr.open("GET", twelveDataUrl);
+
+            // xhr.send(data);
+
+            // const stock = await Stock.create(data);
 
             return true;
         },
