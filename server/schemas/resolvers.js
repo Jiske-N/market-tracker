@@ -58,9 +58,10 @@ export const resolvers = {
         updateStock: async (parent, { ticker }) => {
             console.log("ser-resolver-upd-stock ticker", ticker);
             const twelveDataApiKey = process.env.TWELVEDATA_API_KEY;
-            const twelveDataUrl = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2&type=none"`;
+            const twelveDataUrl = `https://api.twelvedata.com/time_series?apikey=${twelveDataApiKey}&interval=1month&symbol=${ticker}&end_date=2024-07-23 19:03:00&start_date=2014-07-23 19:03:00&format=JSON&dp=2`;
 
-            const historicalData = await fetch(twelveDataUrl);
+            const twelveDataResponse = await fetch(twelveDataUrl);
+            const historicalData = await twelveDataResponse.json();
 
             console.log(historicalData);
 

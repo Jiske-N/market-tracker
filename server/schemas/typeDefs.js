@@ -5,14 +5,14 @@ user: User
 }
 
 type HistoricPrice {
-    date: Date
+    date: String
     closingPrice: Float
 }
 
 type OwnedShares {
     _id: ID
-    purchasePrice: Number
-    quantity: Number
+    purchasePrice: Float
+    quantity: Int
     stock: [Stock]
 }
 
