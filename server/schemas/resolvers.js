@@ -75,7 +75,7 @@ export const resolvers = {
         },
         addShares: async (
             parent,
-            { purchasePrice, quantity, stock, portfolio }
+            { stock, portfolio, quantity, purchasePrice }
         ) => {
             console.log(
                 "the things",
@@ -84,21 +84,20 @@ export const resolvers = {
                 stock,
                 portfolio
             );
-            if (purchasePrice && quantity && stock && portfolio) {
-                const shares = await OwnedShares.create({
-                    purchasePrice,
-                    quantity,
-                    stock,
-                });
-                console.log("the things", shares);
-                await Portfolio.findOneAndUpdate(
-                    { _id: portfolio },
-                    { $addToSet: { portfolioStocks: shares } }
-                );
+            // if (purchasePrice && quantity && stock && portfolio) {
+            const shares = await OwnedShares.create({
+                purchasePrice,
+                quantity,
+                stock,
+            });
+            console.log("the things", shares);
+            await Portfolio.findOneAndUpdate(
+                { _id: portfolio },
+                { $addToSet: { portfolioStocks: shares } }
+            );
 
-                return shares;
-            }
-            throw AuthenticationError;
+            return shares;
+            // }
         },
         updateStock: async (parent, { ticker }) => {
             // get date from helper in the correct format for the api

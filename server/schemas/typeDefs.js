@@ -51,7 +51,7 @@ login(email: String!, password: String!): Auth
 addPortfolio(name: String!): Portfolio
 #updatePortfolio(stretch)
 #removePortfolio(stretch)
-addShares(purchasePrice: Float!, quantity: Int!, stock: ID!, portfolio: ID!): OwnedShares
+addShares(stock: ID!, portfolio: ID!, quantity: Int!, purchasePrice: Float!): OwnedShares
 #updateShares(stretch)
 #removeShares(stretch)
 updateStock(ticker: String!): HistoricPrice

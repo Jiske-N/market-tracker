@@ -5,8 +5,8 @@ import { ADD_SHARES } from "../utilities/mutations";
 type FormValues = {
     stock: string;
     portfolio: string;
-    quantity: number;
-    purchasePrice: number;
+    quantity: string;
+    purchasePrice: string;
 };
 
 const resolver: Resolver<FormValues> = async (values) => {
@@ -41,7 +41,6 @@ const resolver: Resolver<FormValues> = async (values) => {
             },
         };
     }
-
    
     if (!values.purchasePrice) {
         errors = {
@@ -76,13 +75,15 @@ export default function AddSharesForm() {
 
     const onSubmit = handleSubmit(async (data) => {
         try {
-            console.log("AddSharesForm.tsx pre mutation response");
+            console.log("AddSharesForm.tsx pre mutation response",typeof data.stock,typeof data.portfolio,typeof parseFloat(data.purchasePrice), typeof parseInt(data.quantity), data);
+            // const quantity: string = data.quantity //"17"
+            // const purchasePrice: string = data.purchasePrice
             const mutationResponse = await addShares({
                 variables: {
                     stock: data.stock,
                     portfolio: data.portfolio,
-                    quantity: data.quantity,
-                    purchasePrice: data.purchasePrice,
+                    quantity: parseInt(data.quantity),
+                    purchasePrice: parseFloat(data.purchasePrice),
                 },
             });
             console.log(mutationResponse, typeof mutationResponse);
@@ -96,17 +97,13 @@ export default function AddSharesForm() {
 
     return (
         <form onSubmit={onSubmit}>
-            <input {...register("stock")} placeholder="First Name" />
+            <input {...register("stock")} placeholder="Stock ID" />
             {errors?.stock && <p>{errors.stock.message}</p>}
-            <input {...register("portfolio")} placeholder="Last Name" />
+            <input {...register("portfolio")} placeholder="Portfolio ID" />
             {errors?.portfolio && <p>{errors.portfolio.message}</p>}
-            <input type="quantity" {...register("quantity")} placeholder="quantity" />
+            <input type="number" {...register("quantity")} placeholder="Quantity" />
             {errors?.quantity && <p>{errors.quantity.message}</p>}
-            <input
-                type="purchasePrice"
-                {...register("purchasePrice")}
-                placeholder="purchasePrice"
-            />
+            <input type="number" {...register("purchasePrice")} placeholder="Purchase Price" />
             {errors?.purchasePrice && <p>{errors.purchasePrice.message}</p>}
 
             <input type="submit" />

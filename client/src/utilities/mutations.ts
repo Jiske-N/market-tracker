@@ -46,21 +46,23 @@ export const ADD_PORTFOLIO = gql`
 
 export const ADD_SHARES = gql`
     mutation addShares(
-        $stockId: ID!
-        $portfolioId: ID!
-        $quantity: Int
-        $purchasePrice: Float
+        $stock: ID!
+        $portfolio: ID!
+        $quantity: Int!
+        $purchasePrice: Float!
     ) {
         addShares(
-            stock: $stockId
-            portfolio: $portfolioId
+            stock: $stock
+            portfolio: $portfolio
             quantity: $quantity
             purchasePrice: $purchasePrice
         ) {
             _id
             purchasePrice
             quantity
-            stock
+            stock {
+                _id
+            }
         }
     }
 `;
