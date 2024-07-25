@@ -58,6 +58,7 @@ export const resolvers = {
             return { token, user };
         },
         addPortfolio: async (parent, { name }, context) => {
+            console.log("the things", context.user, name);
             if (context.user) {
                 const portfolio = await Portfolio.create({
                     name,
