@@ -32,6 +32,18 @@ export const LOGIN = gql`
     }
 `;
 
+export const ADD_PORTFOLIO = gql`
+    mutation addPortfolio($name: String!) {
+        addPortfolio(name: $name) {
+            _id
+            name
+            portfolioStocks {
+                _id
+            }
+        }
+    }
+`;
+
 export const UPDATE_STOCK = gql`
     mutation updateStock($ticker: String!) {
         updateStock(ticker: $ticker) {

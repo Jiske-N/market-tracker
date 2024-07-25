@@ -13,6 +13,7 @@ const stock = new Schema({
     exchange: {
         type: String,
     },
+    // probably add country and type(as in common stock, etf etc) in future but not needed for mvp
     historicPrices: [
         {
             date: String,

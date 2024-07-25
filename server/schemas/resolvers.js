@@ -57,6 +57,21 @@ export const resolvers = {
 
             return { token, user };
         },
+        addPortfolio: async (parent, { name }, context) => {
+            if (context.user) {
+                const portfolio = await Portfolio.create({
+                    name,
+                });
+
+                await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { portfolios: portfolio._id } }
+                );
+
+                return portfolio;
+            }
+            throw AuthenticationError;
+        },
         updateStock: async (parent, { ticker }) => {
             // get date from helper in the correct format for the api
             const endDate = getCurrentDateTime();
@@ -85,7 +100,7 @@ export const resolvers = {
                 { new: true }
             );
 
-            // can be used to add a new stock, I don't think I will used it based on the current plan but I'll leave it here now in case
+            // can be used to add a new stock, I don't think I will used it based on the current plan as all stocks should be added by an api in seeds but I'll leave it here now in case
             // const newStock = await Stock.create({
             //     ticker: ticker,
             //     exchange: exchange,
