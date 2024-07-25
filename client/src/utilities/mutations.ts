@@ -52,8 +52,8 @@ export const ADD_SHARES = gql`
         $purchasePrice: Float
     ) {
         addShares(
-            stockId: $stockId
-            portfolioId: $portfolioId
+            stock: $stockId
+            portfolio: $portfolioId
             quantity: $quantity
             purchasePrice: $purchasePrice
         ) {

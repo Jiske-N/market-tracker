@@ -48,6 +48,7 @@ addUser(firstName: String!, lastName: String!, email: String!, password: String!
 updateUser(firstName: String, lastName: String, email: String, password: String, darkMode: Boolean): User
 login(email: String!, password: String!): Auth
 addPortfolio(name: String!): Portfolio
+addShares(purchasePrice: Float!, quantity: Int!, stock: ID!, portfolio: ID!): OwnedShares
 #removePortfolio(stretch)
 updateStock(ticker: String!): HistoricPrice
 }`;
