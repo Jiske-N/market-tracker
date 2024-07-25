@@ -47,8 +47,12 @@ type Mutation {
 addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
 updateUser(firstName: String, lastName: String, email: String, password: String, darkMode: Boolean): User
 login(email: String!, password: String!): Auth
+#removeUser(stretch)
 addPortfolio(name: String!): Portfolio
-addShares(purchasePrice: Float!, quantity: Int!, stock: ID!, portfolio: ID!): OwnedShares
+#updatePortfolio(stretch)
 #removePortfolio(stretch)
+addShares(purchasePrice: Float!, quantity: Int!, stock: ID!, portfolio: ID!): OwnedShares
+#updateShares(stretch)
+#removeShares(stretch)
 updateStock(ticker: String!): HistoricPrice
 }`;

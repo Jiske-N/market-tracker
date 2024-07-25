@@ -73,6 +73,33 @@ export const resolvers = {
             }
             throw AuthenticationError;
         },
+        addShares: async (
+            parent,
+            { purchasePrice, quantity, stock, portfolio }
+        ) => {
+            console.log(
+                "the things",
+                purchasePrice,
+                quantity,
+                stock,
+                portfolio
+            );
+            if (purchasePrice && quantity && stock && portfolio) {
+                const shares = await OwnedShares.create({
+                    purchasePrice,
+                    quantity,
+                    stock,
+                });
+                console.log("the things", shares);
+                await Portfolio.findOneAndUpdate(
+                    { _id: portfolio },
+                    { $addToSet: { portfolioStocks: shares } }
+                );
+
+                return shares;
+            }
+            throw AuthenticationError;
+        },
         updateStock: async (parent, { ticker }) => {
             // get date from helper in the correct format for the api
             const endDate = getCurrentDateTime();
