@@ -44,6 +44,27 @@ export const ADD_PORTFOLIO = gql`
     }
 `;
 
+export const ADD_SHARES = gql`
+    mutation addShares(
+        $stockId: ID!
+        $portfolioId: ID!
+        $quantity: Int
+        $purchasePrice: Float
+    ) {
+        addShares(
+            stockId: $stockId
+            portfolioId: $portfolioId
+            quantity: $quantity
+            purchasePrice: $purchasePrice
+        ) {
+            _id
+            purchasePrice
+            quantity
+            stock
+        }
+    }
+`;
+
 export const UPDATE_STOCK = gql`
     mutation updateStock($ticker: String!) {
         updateStock(ticker: $ticker) {
