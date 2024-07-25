@@ -63,7 +63,7 @@ export const resolvers = {
                 const portfolio = await Portfolio.create({
                     name,
                 });
-
+                console.log("the things", portfolio);
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { portfolios: portfolio._id } }

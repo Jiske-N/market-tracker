@@ -18,6 +18,7 @@ type OwnedShares {
 
 type Portfolio {
 _id: ID
+name: String
 portfolioStocks: [OwnedShares]
 }
 

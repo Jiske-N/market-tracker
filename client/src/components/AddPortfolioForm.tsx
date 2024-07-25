@@ -40,7 +40,7 @@ export default function AddPortfolioForm() {
 
     const onSubmit = handleSubmit(async (data) => {
         try {
-            console.log("AddPortfolioForm.tsx pre api request");
+            console.log("AddPortfolioForm.tsx pre api request", data.name);
             const mutationResponse = await addPortfolio({
                 variables: {
                     name: data.name,
