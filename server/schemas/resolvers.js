@@ -63,7 +63,7 @@ export const resolvers = {
                 const portfolio = await Portfolio.create({
                     name,
                 });
-
+                console.log("the things", portfolio);
                 await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { portfolios: portfolio._id } }
@@ -72,6 +72,32 @@ export const resolvers = {
                 return portfolio;
             }
             throw AuthenticationError;
+        },
+        addShares: async (
+            parent,
+            { stock, portfolio, quantity, purchasePrice }
+        ) => {
+            console.log(
+                "the things",
+                purchasePrice,
+                quantity,
+                stock,
+                portfolio
+            );
+            // if (purchasePrice && quantity && stock && portfolio) {
+            const shares = await OwnedShares.create({
+                purchasePrice,
+                quantity,
+                stock,
+            });
+            console.log("the things", shares);
+            await Portfolio.findOneAndUpdate(
+                { _id: portfolio },
+                { $addToSet: { portfolioStocks: shares } }
+            );
+
+            return shares;
+            // }
         },
         updateStock: async (parent, { ticker }) => {
             // get date from helper in the correct format for the api

@@ -18,6 +18,7 @@ type OwnedShares {
 
 type Portfolio {
 _id: ID
+name: String
 portfolioStocks: [OwnedShares]
 }
 
@@ -46,7 +47,12 @@ type Mutation {
 addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
 updateUser(firstName: String, lastName: String, email: String, password: String, darkMode: Boolean): User
 login(email: String!, password: String!): Auth
+#removeUser(stretch)
 addPortfolio(name: String!): Portfolio
+#updatePortfolio(stretch)
 #removePortfolio(stretch)
+addShares(stock: ID!, portfolio: ID!, quantity: Int!, purchasePrice: Float!): OwnedShares
+#updateShares(stretch)
+#removeShares(stretch)
 updateStock(ticker: String!): HistoricPrice
 }`;

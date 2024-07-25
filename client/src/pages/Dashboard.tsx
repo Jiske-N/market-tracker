@@ -1,4 +1,5 @@
 import AddPortfolioForm from '../components/AddPortfolioForm';
+import AddSharesForm from '../components/AddSharesForm';
 import AddStockForm from '../components/AddStockForm';
 
 const Dashboard = () => {
@@ -6,6 +7,7 @@ const Dashboard = () => {
         <>
         <AddStockForm/>
         <AddPortfolioForm/>
+        <AddSharesForm/>
         <h1>Dashboard</h1>
         </>
     )
