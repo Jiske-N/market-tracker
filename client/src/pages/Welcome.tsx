@@ -12,7 +12,7 @@ const Welcome = () => {
         <>
         <Navbar/>
         <Hero/>
-        <h1 style={{color: palette.text.secondary}}>Welcome</h1>
+        {/* <h1 style={{color: palette.text.secondary}}>Welcome</h1> */}
         </>
     )
 };
