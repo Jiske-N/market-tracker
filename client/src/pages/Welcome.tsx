@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar'
 import Hero from '../components/Hero';
 import Advertisment from '../components/Advertisment';
 import MoreInfo from '../components/MoreInfo';
+import SubscriptionTiers from '../components/SubscriptionTiers'
 
 const Welcome = () => {
     // const {palette} = useTheme()
@@ -16,6 +17,7 @@ const Welcome = () => {
         <Hero/>
         <Advertisment/>
         <MoreInfo/>
+        <SubscriptionTiers/>
         {/* <h1 style={{color: palette.text.secondary}}>Welcome</h1> */}
         </>
     )
