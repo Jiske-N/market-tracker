@@ -26,6 +26,8 @@ export const AppDarkTheme: Theme = createTheme({
             light: "#111111",
             main: "#111111",
             dark: "#111111",
+            // black
+            contrastText: "#000000",
         },
         secondary: {
             // light grey
@@ -42,6 +44,7 @@ export const AppDarkTheme: Theme = createTheme({
         },
         common: {
             white: "#FFFFFF",
+            black: "#000000",
         },
     },
 });
