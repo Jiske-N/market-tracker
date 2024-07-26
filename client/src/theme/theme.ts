@@ -16,12 +16,18 @@ export const AppDarkTheme: Theme = createTheme({
     palette: {
         mode: "dark",
         text: {
-            primary: "#333333",
-            secondary: "#666666",
+            primary: "#FFFFFF",
+            secondary: "#00df9a",
         },
-
+        secondary: {
+            main: "#9e9e9e",
+        },
         background: {
-            default: "#111111",
+            default: "#000300",
+            paper: "#000",
+        },
+        common: {
+            white: "#FFFFFF",
         },
     },
 });
