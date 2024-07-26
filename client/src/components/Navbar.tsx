@@ -116,17 +116,17 @@ const Navbar = () => {
                         <List sx={{ display: "flex" }}>
                             <ListItemButton
                                 component={Link}
-                                to="/sign-up"
-                                sx={{ padding: 2 }}
-                            >
-                                <ListItemText primary="Signup" />
-                            </ListItemButton>
-                            <ListItemButton
-                                component={Link}
                                 to="/log-in"
                                 sx={{ padding: 2 }}
                             >
                                 <ListItemText primary="Login" />
+                            </ListItemButton>
+                            <ListItemButton
+                                component={Link}
+                                to="/sign-up"
+                                sx={{ padding: 2 }}
+                            >
+                                <ListItemText primary="Signup" />
                             </ListItemButton>
                         </List>
                     )}

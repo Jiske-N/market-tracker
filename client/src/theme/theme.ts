@@ -19,8 +19,15 @@ export const AppDarkTheme: Theme = createTheme({
             primary: "#FFFFFF",
             secondary: "#00df9a",
         },
+        primary: {
+            light: "#111111",
+            main: "#111111",
+            dark: "#111111",
+        },
         secondary: {
             main: "#9e9e9e",
+            light: "#666666",
+            dark: "#111111",
         },
         background: {
             default: "#000300",

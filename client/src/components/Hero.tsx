@@ -1,7 +1,9 @@
 import Typewriter from 'typewriter-effect';
-import { Box, Typography, Button } from '@mui/material';
+import { Box, Typography, Button, useTheme } from '@mui/material';
+import { Link } from "react-router-dom";
 
 const Hero = () => {
+  const {palette} = useTheme()
   return (
     <Box
       sx={{
@@ -19,7 +21,7 @@ const Hero = () => {
       <Typography
         variant="h6"
         sx={{
-          color: '#00df9a',
+          color: palette.text.secondary,
           fontWeight: 'bold',
           padding: '0.5rem',
         }}
@@ -29,12 +31,12 @@ const Hero = () => {
       <Typography
         variant="h1"
         sx={{
-          fontSize: { xs: '4xl', sm: '6xl', md: '7xl' },
+          fontSize: { xs: '2.25rem', sm: '3.75rem', md: '4.5rem' },
           fontWeight: 'bold',
           paddingY: { xs: '0', md: '1.5rem' },
         }}
       >
-        Unlock inspiration.
+        Be inspired.
       </Typography>
       <Box
         sx={{
@@ -47,13 +49,14 @@ const Hero = () => {
         <Typography
           variant="h3"
           sx={{
-            fontSize: { xs: 'xl', sm: '4xl', md: '5xl' },
+            fontSize: { xs: '1.25rem', sm: '2.25rem', md: '3rem' },
             fontWeight: 'bold',
             paddingRight: { xs: '0.5rem', md: '1rem' },
           }}
         >
           Fast, flexible data on the
         </Typography>
+        {/* can't get style to work */}
         <Typewriter
           options={{
             strings: ['NYSE', 'NASDAQ', 'CHX'],
@@ -63,7 +66,7 @@ const Hero = () => {
             deleteSpeed: 140,
           }}
         //   style={{
-        //     fontSize: { xs: 'xl', sm: '4xl', md: '5xl' },
+        //     fontSize: { xs: '1.25rem', sm: '2.25rem', md: '3rem' },
         //     fontWeight: 'bold',
         //     paddingLeft: { xs: '0.5rem', md: '1rem' },
         //   }}
@@ -72,21 +75,25 @@ const Hero = () => {
       <Typography
         variant="h6"
         sx={{
-          fontSize: { xs: 'xl', md: '2xl' },
+          fontSize: {
+            xs: '1.25rem',
+            md: '1.5rem'
+          },
           fontWeight: 'bold',
-          color: 'gray.500',
+          color: palette.secondary.light,
         }}
       >
-        Monitor your investments and discover new opportunites to achieve financial freedom.
+        Unlock new opportunites to achieve financial freedom.
       </Typography>
       <Button
-        variant="contained"
+                                      component={Link}
+                                to="/sign-up"
         sx={{
-          backgroundColor: '#00df9a',
+          backgroundColor: palette.text.secondary,
           color: 'black',
-          width: '200px',
-          borderRadius: '8px',
-          fontWeight: 'medium',
+          width: '12.5rem',
+          borderRadius: '0.5rem',
+          fontWeight: 'bold',
           marginY: '1.5rem',
           marginX: 'auto',
           paddingY: '0.75rem',
