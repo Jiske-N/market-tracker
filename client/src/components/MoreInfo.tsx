@@ -76,7 +76,7 @@ const MoreInfo = () => {
                                 }}
                             />
                             <Button
-                                disabled
+                                // disabled
                                 sx={{
                                     backgroundColor: palette.text.secondary,
                                     color: palette.common.black,

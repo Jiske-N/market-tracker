@@ -90,7 +90,7 @@ const Hero = () => {
                 to="/sign-up"
                 sx={{
                     backgroundColor: palette.text.secondary,
-                    color: "black",
+                    color: palette.common.black,
                     width: "12.5rem",
                     borderRadius: "0.5rem",
                     fontWeight: "bold",

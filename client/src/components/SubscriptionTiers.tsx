@@ -26,7 +26,8 @@ const SubscriptionTiers: React.FunctionComponent<{
                 display: "flex",
                 flexDirection: "column",
                 padding: 4,
-                margin: "0 auto",
+                // paddingX: 20,
+                // margin: "0 auto",
                 borderRadius: "0.5rem",
                 boxShadow: theme.shadows[3],
                 backgroundColor: backgroundColor,
@@ -42,12 +43,12 @@ const SubscriptionTiers: React.FunctionComponent<{
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    backgroundColor: theme.palette.secondary.light,
+                    backgroundColor: theme.palette.common.black,
                     width: 80,
                     height: 80,
                     borderRadius: "50%",
                     margin: "0 auto",
-                    padding: 1,
+                    // padding: 1,
                 }}
             >
                 {Icon}
@@ -117,7 +118,13 @@ const Cards = () => {
             sx={{
                 width: "100%",
                 py: 10,
-                px: 2,
+                px: {
+                    xs: "2rem",
+                    sm: "2rem",
+                    md: "5rem",
+                    lg: "8rem",
+                    xl: "14rem",
+                },
                 backgroundColor: palette.common.white,
                 boxSizing: "border-box",
             }}
