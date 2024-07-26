@@ -1,5 +1,6 @@
 import { useTheme } from '@mui/material';
 import Navbar from '../components/Navbar'
+import Hero from '../components/Hero';
 
 const Welcome = () => {
     const {palette} = useTheme()
@@ -10,6 +11,7 @@ const Welcome = () => {
     return (
         <>
         <Navbar/>
+        <Hero/>
         <h1 style={{color: palette.text.secondary}}>Welcome</h1>
         </>
     )
