@@ -4,6 +4,7 @@
     "description": "",
     "main": "server/index.js",
     "scripts": {
+        "postinstall": "cd client && npm i && cd ../server && npm i",
         "start": "node server/index.js",
         "devstart": "nodemon server/index.js",
         "develop": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
