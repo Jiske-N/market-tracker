@@ -64,3 +64,4 @@ xTwelve Data Stock market data (real-time & historical)
 xx Yahoo Finance Real time low latency Yahoo Finance API for stock market, crypto currencies, and currency exchange
 
 webpack lesson rewatch for uploading client/server to render
+1:09:00

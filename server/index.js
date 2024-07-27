@@ -5,6 +5,7 @@ import database from "./config/connection.js";
 import { typeDefs, resolvers } from "./schemas/index.js";
 import { authMiddleware } from "./utilities/auth.js";
 import "dotenv/config";
+import path from "path";
 
 // ________________
 // import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
@@ -41,13 +42,14 @@ const startApolloServer = async () => {
         })
     );
 
-    // if (process.env.NODE_ENV === "production") {
-    //     app.use(express.static(path.join(__dirname, "../client/dist")));
+    if (process.env.NODE_ENV === "production") {
+        app.use(express.static(path.join(__dirname, "../client/dist")));
 
-    //     app.get("*", (req, res) => {
-    //         res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-    //     });
-    // }
+        // possibly replace * with / if we want to run multiple files?
+        app.get("*", (req, res) => {
+            res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+        });
+    }
 
     database.once("open", () => {
         app.listen(PORT, () => {
