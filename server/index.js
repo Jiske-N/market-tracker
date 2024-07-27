@@ -5,6 +5,12 @@ import database from "./config/connection.js";
 import { typeDefs, resolvers } from "./schemas/index.js";
 import { authMiddleware } from "./utilities/auth.js";
 import "dotenv/config";
+import path from "path";
+
+// need to add this because I'm using esm modules rather than commonjs modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+import { fileURLToPath } from "url";
 
 // ________________
 // import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
@@ -41,13 +47,23 @@ const startApolloServer = async () => {
         })
     );
 
-    // if (process.env.NODE_ENV === "production") {
-    //     app.use(express.static(path.join(__dirname, "../client/dist")));
+    // console.log(
+    //     "Serving static files from:",
+    //     path.join(__dirname, "../client/dist")
+    // );
+    // console.log(
+    //     "Index.html path:",
+    //     path.resolve(__dirname, "../client/dist/index.html")
+    // );
 
-    //     app.get("*", (req, res) => {
-    //         res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-    //     });
-    // }
+    if (process.env.NODE_ENV === "production") {
+        app.use(express.static(path.join(__dirname, "../client/dist")));
+
+        // possibly replace * with / if we want to run multiple files?
+        app.get("*", (req, res) => {
+            res.sendFile(path.resolve(__dirname, "../client/dist/index.html"));
+        });
+    }
 
     database.once("open", () => {
         app.listen(PORT, () => {

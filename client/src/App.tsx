@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { ThemeContextProvider } from "./theme/index";
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
-import { Box, Typography } from "@mui/material";
+// import { Box, Typography } from "@mui/material";
 
 const httpLink = createHttpLink({
     uri: '/graphql',
