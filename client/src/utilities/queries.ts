@@ -1,5 +1,21 @@
 import { gql } from "@apollo/client";
 
+// query user all info
+export const QUERY_USER = gql`
+    query getUser {
+        user {
+            _id
+            darkMode
+            email
+            firstName
+            lastName
+            portfolios {
+                _id
+            }
+        }
+    }
+`;
+
 export const QUERY_STOCK = gql`
     query getApiStock(
         $firstName: String!
