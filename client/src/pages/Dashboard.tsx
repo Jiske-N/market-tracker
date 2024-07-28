@@ -2,6 +2,7 @@ import { Box } from '@mui/material';
 import AddPortfolioForm from '../components/AddPortfolioForm';
 import AddSharesForm from '../components/AddSharesForm';
 import AddStockForm from '../components/AddStockForm';
+import PortfolioTable from '../components/PortfolioTable';
 
 const Dashboard = () => {
     return (
@@ -9,6 +10,7 @@ const Dashboard = () => {
         <AddStockForm/>
         <AddPortfolioForm/>
         <AddSharesForm/>
+        <PortfolioTable/>
         <h1>Dashboard</h1>
         </Box>
     )
