@@ -4,18 +4,75 @@ import { signToken, AuthenticationError } from "../utilities/auth.js";
 import { getCurrentDateTime } from "../utilities/helpers.js";
 
 export const resolvers = {
+    // Query: {
+    //     user: async (parent, args, context) => {
+    //         if (context.user) {
+    //             const user = await User.findById(context.user._id).populate({
+    //                 path: "portfolios",
+    //                 populate: {
+    //                     path: "portfolioStocks",
+    //                     populate: {
+    //                         path: "stock",
+    //                     },
+    //                 },
+    //             });
+
+    //             return user;
+    //         }
+
+    //         throw AuthenticationError;
+    //     },
+    // },
+
     Query: {
         user: async (parent, args, context) => {
             if (context.user) {
-                const user = await User.findById(context.user._id);
-                // .populate({
-                //     add things to populate
-                // })
+                const user = await User.findById(context.user._id).populate({
+                    path: "portfolios",
+                    populate: {
+                        path: "portfolioStocks",
+                        populate: {
+                            path: "stock",
+                        },
+                    },
+                });
 
                 return user;
             }
 
-            throw AuthenticationError;
+            throw new AuthenticationError();
+        },
+        // portfolios: async () => {
+        //     return await Portfolio.find().populate({
+        //         path: "portfolioStocks",
+        //         populate: {
+        //             path: "stock",
+        //         },
+        //     });
+        // },
+        portfolios: async () => {
+            return await Portfolio.find().populate("portfolioStocks");
+        },
+        // ownedShares: async () => {
+        //     return await OwnedShares.find().populate("stock");
+        // },
+        // ownedShares: async () => {
+        //     return await OwnedShares.find();
+        // },
+        stocks: async () => {
+            return await Stock.find();
+        },
+        stockByTicker: async (parent, args) => {
+            const { ticker } = args;
+            if (ticker) {
+                return await Stock.find({ ticker: new RegExp(ticker, "i") });
+            }
+        },
+        stockById: async (parent, args) => {
+            const { id } = args;
+            if (id) {
+                return await Stock.findById(id);
+            }
         },
     },
 
