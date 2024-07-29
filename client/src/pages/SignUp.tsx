@@ -1,10 +1,7 @@
 import LoginSignupStructure from "../components/LoginSignupStructure";
 
-
 const SignUp = () => {
-    return (
-        <LoginSignupStructure/>
-    )
+    return <LoginSignupStructure />;
 };
 
 export default SignUp;

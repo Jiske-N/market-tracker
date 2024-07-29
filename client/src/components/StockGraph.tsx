@@ -1,7 +1,15 @@
-import React from 'react';
-import { Box } from '@mui/material';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts'; // Adjust if using a different library
-import { useUserContext } from '../utilities/UserContext';
+import React from "react";
+import { Box } from "@mui/material";
+import {
+    LineChart,
+    Line,
+    XAxis,
+    YAxis,
+    CartesianGrid,
+    Tooltip,
+    Legend,
+} from "recharts"; // Adjust if using a different library
+import { useUserContext } from "../utilities/UserContext";
 
 // I think this is currently returning stocks from all portfolios. will need to adjust so it's only the selected one.
 const StockGraph: React.FC = () => {
@@ -11,11 +19,11 @@ const StockGraph: React.FC = () => {
     if (error) return <p>Error: {error.message}</p>;
 
     // flat map removes a level from the array
-    const formattedData = stocks.flatMap(stock =>
-        stock.historicPrices.map(price => ({
+    const formattedData = stocks.flatMap((stock) =>
+        stock.historicPrices.map((price) => ({
             date: price.date,
             closingPrice: price.closingPrice,
-            stockName: stock.name
+            stockName: stock.name,
         }))
     );
 
@@ -32,11 +40,20 @@ const StockGraph: React.FC = () => {
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="date" tickFormatter={(tick) => new Date(tick).toLocaleDateString()} />
+                    <XAxis
+                        dataKey="date"
+                        tickFormatter={(tick) =>
+                            new Date(tick).toLocaleDateString()
+                        }
+                    />
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="closingPrice" stroke="#8884d8" />
+                    <Line
+                        type="monotone"
+                        dataKey="closingPrice"
+                        stroke="#8884d8"
+                    />
                 </LineChart>
             ) : (
                 <p>No stocks found</p>

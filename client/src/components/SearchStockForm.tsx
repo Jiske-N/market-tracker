@@ -2,12 +2,18 @@ import { useForm, Resolver } from "react-hook-form";
 import { validateTicker } from "../utilities/helpers";
 import { useMutation } from "@apollo/client";
 import { UPDATE_STOCK } from "../utilities/mutations";
+// import { useUserContext } from '../utilities/UserContext';
 
 type FormValues = {
-    ticker:string
+    ticker: string;
 };
 
 const resolver: Resolver<FormValues> = async (values) => {
+    //     const { stocks } = useUserContext();
+    // const tickers = stocks.map(stock => (
+    //   {  ticker: stock.ticker,}
+    // ))
+
     let errors = {};
 
     const validTicker: boolean = validateTicker(values.ticker);
@@ -45,10 +51,9 @@ export default function AddStockForm() {
                     ticker: data.ticker,
                 },
             });
-            console.log(mutationResponse, typeof mutationResponse)
+            console.log(mutationResponse, typeof mutationResponse);
 
             // code to probably rerender page to reflect new values
-
         } catch (error) {
             console.log(error);
         }
