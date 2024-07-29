@@ -4,6 +4,7 @@ import AddSharesForm from '../components/AddSharesForm';
 import AddStockForm from '../components/AddStockForm';
 import PortfolioTable from '../components/PortfolioTable';
 import { useUserContext } from '../utilities/UserContext';
+import StockGraph from '../components/StockGraph';
 
 
 const Dashboard = () => {
@@ -26,6 +27,7 @@ const Dashboard = () => {
         <AddStockForm/>
         <AddPortfolioForm/>
         <AddSharesForm/>
+        <StockGraph/>
         <PortfolioTable/>
         <h1>Dashboard</h1>
         </Box>
