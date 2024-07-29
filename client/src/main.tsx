@@ -21,6 +21,7 @@ import Discover from "./pages/Discover.tsx";
 import Login from "./pages/Login.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import AccountSettings from "./pages/AccountSettings.tsx";
+import StockPage from "./pages/StockPage.tsx";
 // import PageNotFound from "./pages/PageNotFound.tsx";
 
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
             {
                 path: "/dashboard",
                 element: <Dashboard />,
+            },
+            {
+                path: "/stock/:id",
+                element: <StockPage />,
             },
             {
                 path: "/discover",

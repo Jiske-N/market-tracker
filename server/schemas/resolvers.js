@@ -191,6 +191,7 @@ export const resolvers = {
             //     historicPrices: sortedHistoricalData,
             // });
 
+            console.log(stock);
             return stock;
         },
     },

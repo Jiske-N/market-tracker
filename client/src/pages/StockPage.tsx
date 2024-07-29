@@ -1,12 +1,9 @@
 import { Box } from "@mui/material";
-import AddPortfolioForm from "../components/AddPortfolioForm";
 import AddSharesForm from "../components/AddSharesForm";
-import SearchStockForm from "../components/SearchStockForm";
-import PortfolioTable from "../components/PortfolioTable";
 import { useUserContext } from "../utilities/UserContext";
 import StockGraph from "../components/StockGraph";
 
-const Dashboard = () => {
+const StockPage = () => {
     const { portfolios, shares, stocks, loading, error } = useUserContext();
     return (
         <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem">
@@ -23,14 +20,10 @@ const Dashboard = () => {
                     <td colSpan={3}>No portfolios found</td>
                 </tr>
             )}
-            <SearchStockForm />
-            <AddPortfolioForm />
-            <AddSharesForm />
             <StockGraph />
-            <PortfolioTable />
-            <h1>Dashboard</h1>
+            <AddSharesForm />
         </Box>
     );
 };
 
-export default Dashboard;
+export default StockPage;

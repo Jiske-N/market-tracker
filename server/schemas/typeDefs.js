@@ -66,5 +66,5 @@ type Mutation {
     addShares(stock: ID!, portfolio: ID!, quantity: Int!, purchasePrice: Float!): OwnedShares
     #updateShares(stretch)
     #removeShares(stretch)
-    updateStock(ticker: String!): HistoricPrice
+    updateStock(ticker: String!): Stock
 }`;

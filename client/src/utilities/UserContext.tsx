@@ -61,7 +61,7 @@ interface UserContextType {
     stocks: Stock[];
     holding: holding[];
     loading: boolean;
-    error: any;
+    error: unknown;
 }
 
 const UserContext = createContext<UserContextType | undefined>(undefined);
