@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { ThemeContextProvider } from "./theme/index";
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
+import { UserProvider } from "./utilities/UserContext";
 // import { Box, Typography } from "@mui/material";
 
 const httpLink = createHttpLink({
@@ -32,7 +33,9 @@ function App() {
                     <CssBaseline />
                     {/* maybe delete */}
                     {/* <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem"> */}
+                    <UserProvider>
                     <Outlet />
+                    </UserProvider>
                     {/* <Typography variant="h1" color='background.primary'>Hello</Typography> */}
                     {/* </Box> */}
                 </ThemeContextProvider>
