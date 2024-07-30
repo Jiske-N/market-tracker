@@ -4,6 +4,8 @@ import { useMutation } from "@apollo/client";
 import { UPDATE_STOCK } from "../utilities/mutations";
 import { useNavigate } from 'react-router-dom';
 // import { useUserContext } from '../utilities/UserContext';
+import { Box, TextField, Button, Typography } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 type FormValues = {
     ticker: string;
@@ -37,6 +39,7 @@ const resolver: Resolver<FormValues> = async (values) => {
 };
 
 export default function SearchStockForm() {
+    const {palette} = useTheme()
     const navigate = useNavigate()
     const {
         register,
@@ -72,17 +75,87 @@ export default function SearchStockForm() {
     });
 
     return (
-        <form onSubmit={onSubmit}>
-            <input {...register("ticker")} placeholder="Enter Stock Ticker" />
-            {errors?.ticker && <p>{errors.ticker.message}</p>}
-            {error ? (
-                <div>
-                    <p className="error-text">
-                        Change This Error Message to Fit Better
-                    </p>
-                </div>
-            ) : null}
-            <input type="submit" />
-        </form>
+        <Box
+            sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                maxWidth: 500,
+                margin: "auto",
+                padding: 2,
+                boxShadow: 2,
+                borderRadius: 2,
+                backgroundColor: "background.paper",
+                gap: 2,
+            }}
+        >
+            <Typography
+                variant="h5"
+                component="h1"
+                sx={{
+                    color: palette.text.primary,
+                    fontWeight: 'bold',
+                    flexShrink: 0,  // Prevent heading from shrinking
+                }}
+            >
+                Search Stocks
+            </Typography>
+            <Box
+                component="form"
+                onSubmit={handleSubmit(onSubmit)}
+                sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    gap: 2,
+                    flexGrow: 1,
+                }}
+            >
+                <TextField
+                    {...register("ticker", {
+                        required: "Stock ticker is required",
+                    })}
+                    label="Enter Stock Ticker"
+                    variant="outlined"
+                    fullWidth
+                    error={!!errors.ticker}
+                    helperText={errors.ticker ? errors.ticker.message : ""}
+                    sx={{ flex: 1 }}
+                />
+                {errors.ticker && (
+                    <Typography color="error" variant="body2">
+                        {errors.ticker.message}
+                    </Typography>
+                )}
+                <Button
+                    type="submit"
+                    variant="contained"
+                    sx={{
+                        backgroundColor: palette.text.secondary,
+                        color: palette.common.black,
+                        borderRadius: "0.5rem",
+                        fontWeight: "bold",
+                        paddingX: 2,
+                        paddingY: 1,
+                    }}
+                >
+                    Search
+                </Button>
+            </Box>
+        </Box>
     );
 }
+
+{/* <form onSubmit={onSubmit}>
+<input {...register("ticker")} placeholder="Enter Stock Ticker" />
+{errors?.ticker && <p>{errors.ticker.message}</p>}
+{error ? (
+    <div>
+        <p className="error-text">
+            Change This Error Message to Fit Better
+        </p>
+    </div>
+) : null}
+<input type="submit" />
+</form> */}

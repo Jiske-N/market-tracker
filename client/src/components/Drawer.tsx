@@ -13,7 +13,17 @@ const DrawerNav: React.FC = () => {
     const theme = useTheme();
 
     return (
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: 'space-between', height: '100vh', position: 'fixed', top: 0 }}>
+        <Box
+            sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "space-between",
+                height: "100vh",
+                position: "fixed",
+                top: 0,
+                // backgroundColor: theme.palette.background.default
+            }}
+        >
             <Box>
                 <Typography
                     variant="h4"

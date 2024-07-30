@@ -9,12 +9,14 @@ import RowFlexBetweenCenter from "../components/RowFlexBetweenCenter";
 const Dashboard = () => {
     return (
         <RowFlexBetweenCenter>
-            <ColumnFlexJustifyAlignCenter width="15rem">
+            <ColumnFlexJustifyAlignCenter width="15rem" >
                 <DrawerNav />
             </ColumnFlexJustifyAlignCenter>
             <ColumnFlexJustifyAlignCenter>
-                <SearchStockForm />
+            <RowFlexBetweenCenter>
                 <AddPortfolioForm />
+                <SearchStockForm />
+            </RowFlexBetweenCenter>
                 <DashboardGraph />
                 <PortfolioTable />
             </ColumnFlexJustifyAlignCenter>
