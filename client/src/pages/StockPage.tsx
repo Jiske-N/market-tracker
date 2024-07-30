@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import AddSharesForm from "../components/AddSharesForm";
 import { useUserContext } from "../utilities/UserContext";
 import StockGraph from "../components/StockGraph";
+import AddPortfolioForm from "../components/AddPortfolioForm";
 
 const StockPage = () => {
     const { portfolios, shares, stocks, loading, error } = useUserContext();
@@ -21,6 +22,7 @@ const StockPage = () => {
                 </tr>
             )}
             <StockGraph />
+            <AddPortfolioForm/>
             <AddSharesForm />
         </Box>
     );

@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import AddPortfolioForm from "../components/AddPortfolioForm";
-import AddSharesForm from "../components/AddSharesForm";
+// import AddSharesForm from "../components/AddSharesForm";
 import SearchStockForm from "../components/SearchStockForm";
 import PortfolioTable from "../components/PortfolioTable";
 import { useUserContext } from "../utilities/UserContext";
-import StockGraph from "../components/StockGraph";
+import DashboardGraph from "../components/DashboardGraph";
 
 const Dashboard = () => {
     const { portfolios, shares, stocks, loading, error } = useUserContext();
@@ -25,10 +25,9 @@ const Dashboard = () => {
             )}
             <SearchStockForm />
             <AddPortfolioForm />
-            <AddSharesForm />
-            <StockGraph />
+            {/* <AddSharesForm /> */}
+            <DashboardGraph />
             <PortfolioTable />
-            <h1>Dashboard</h1>
         </Box>
     );
 };
