@@ -1,28 +1,34 @@
 import CssBaseline from "@mui/material/CssBaseline";
 import { Outlet } from "react-router-dom";
 import { ThemeContextProvider } from "./theme/index";
-import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from "@apollo/client";
-import { setContext } from '@apollo/client/link/context';
+import {
+    ApolloClient,
+    ApolloProvider,
+    createHttpLink,
+    InMemoryCache,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+import { UserProvider } from "./utilities/UserContext";
 // import { Box, Typography } from "@mui/material";
 
 const httpLink = createHttpLink({
-    uri: '/graphql',
-  });
+    uri: "/graphql",
+});
 
-  const authLink = setContext((_, { headers }) => {
-    const token = localStorage.getItem('id_token');
+const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem("id_token");
     return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      },
+        headers: {
+            ...headers,
+            authorization: token ? `Bearer ${token}` : "",
+        },
     };
-  });
+});
 
-  const client = new ApolloClient({
+const client = new ApolloClient({
     link: authLink.concat(httpLink),
     cache: new InMemoryCache(),
-  });
+});
 
 function App() {
     return (
@@ -32,7 +38,9 @@ function App() {
                     <CssBaseline />
                     {/* maybe delete */}
                     {/* <Box width="100%" height="100%" padding="1rem 2rem 4rem 2rem"> */}
-                    <Outlet />
+                    <UserProvider>
+                        <Outlet />
+                    </UserProvider>
                     {/* <Typography variant="h1" color='background.primary'>Hello</Typography> */}
                     {/* </Box> */}
                 </ThemeContextProvider>

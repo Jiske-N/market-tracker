@@ -21,6 +21,7 @@ import Discover from "./pages/Discover.tsx";
 import Login from "./pages/Login.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import AccountSettings from "./pages/AccountSettings.tsx";
+import StockPage from "./pages/StockPage.tsx";
 // import PageNotFound from "./pages/PageNotFound.tsx";
 
 const router = createBrowserRouter([
@@ -38,6 +39,15 @@ const router = createBrowserRouter([
                 element: <Dashboard />,
             },
             {
+                path: "/stock",
+                element: <StockPage />,
+            },
+            {
+                path: "/stock/:id",
+                element: <StockPage />,
+            },
+            // not yet implemented
+            {
                 path: "/discover",
                 element: <Discover />,
             },
@@ -49,6 +59,7 @@ const router = createBrowserRouter([
                 path: "/sign-up",
                 element: <SignUp />,
             },
+            // not yet implemented
             {
                 path: "/account-settings",
                 element: <AccountSettings />,
