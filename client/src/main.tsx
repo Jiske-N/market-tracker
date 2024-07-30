@@ -46,6 +46,7 @@ const router = createBrowserRouter([
                 path: "/stock/:id",
                 element: <StockPage />,
             },
+            // not yet implemented
             {
                 path: "/discover",
                 element: <Discover />,
@@ -58,6 +59,7 @@ const router = createBrowserRouter([
                 path: "/sign-up",
                 element: <SignUp />,
             },
+            // not yet implemented
             {
                 path: "/account-settings",
                 element: <AccountSettings />,
