@@ -4,8 +4,12 @@ import Advertisment from '../components/Advertisment';
 import MoreInfo from '../components/MoreInfo';
 import SubscriptionTiers from '../components/SubscriptionTiers'
 import Footer from '../components/Footer';
+import { useEffect } from 'react';
 
 const Welcome = () => {
+    useEffect(() => {
+        document.title = "Market-Tracker";
+    }, []);
     return (
         <>
         <Navbar/>

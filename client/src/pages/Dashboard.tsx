@@ -5,15 +5,19 @@ import DashboardGraph from "../components/DashboardGraph";
 import ColumnFlexJustifyAlignCenter from "../components/ColumnFlexJustifyAlignCenter";
 import DrawerNav from "../components/Drawer";
 import RowFlexBetweenCenter from "../components/RowFlexBetweenCenter";
+import { useEffect } from "react";
 
 const Dashboard = () => {
+    useEffect(() => {
+        document.title = "Market-Tracker/dashboard";
+    }, []);
     return (
         <RowFlexBetweenCenter>
             <ColumnFlexJustifyAlignCenter width="15rem" >
                 <DrawerNav />
             </ColumnFlexJustifyAlignCenter>
             <ColumnFlexJustifyAlignCenter>
-            <RowFlexBetweenCenter>
+            <RowFlexBetweenCenter sx={{width: '100%'}}>
                 <AddPortfolioForm />
                 <SearchStockForm />
             </RowFlexBetweenCenter>

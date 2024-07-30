@@ -9,6 +9,7 @@ import {
     TableHead,
     TableRow,
     Paper,
+    Typography
 } from "@mui/material";
 
 const StockTable: React.FC = () => {
@@ -26,7 +27,8 @@ const StockTable: React.FC = () => {
     }));
 
     return (
-        <Box width="100%" padding="1rem 2rem">
+        <Box sx={{margin: 'auto', width:"95%", padding:"1rem 2rem 4rem 2rem", maxWidth: '100%'}}>
+           <Typography variant="h4" sx={{fontWeight: 'bold', padding: "0rem 0rem 1rem 2rem"}}>Holdings</Typography>
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
     LineChart,
     Line,
@@ -70,9 +70,16 @@ const DashboardGraph: React.FC = () => {
     //     />
     // ))
 
+    // sx={{
+    //     width: '75%', // Adjust this percentage as needed
+    //     maxWidth: '100%', // Ensure it doesn't exceed the parent container
+    //     margin: 'auto', // Center the chart horizontally
+    //     padding: 2, // Optional padding
+    // }}
+
     return (
-        <Box width="100%" padding="1rem 2rem 4rem 2rem">
-            <h1>Portfolio Stocks</h1>
+        <Box sx={{margin: 'auto', width:"100%", padding:"1rem 2rem 4rem 2rem", maxWidth: '100%'}}>
+            <Typography variant="h4" sx={{fontWeight: 'bold', padding: "0rem 0rem 1rem 5rem"}}>Portfolio Stocks</Typography>
             {aggregatedData && aggregatedData.length > 0 ? (
                 <LineChart
                     width={1500}

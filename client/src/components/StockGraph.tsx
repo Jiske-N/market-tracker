@@ -67,7 +67,7 @@
 // export default StockGraph;
 
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import {
     LineChart,
     Line,
@@ -111,12 +111,12 @@ const StockGraph: React.FC = () => {
 
     // console.log(reversedData)
     return (
-        <Box width="100%" padding="1rem 2rem 4rem 2rem">
-            <h1>{selectedStockName}</h1>
+        <Box sx={{margin: 'auto', width:"100%", padding:"0rem 2rem 2rem 2rem", maxWidth: '100%'}}>
+            <Typography variant="h4" sx={{fontWeight: 'bold', padding: "0rem 0rem 1rem 5rem"}}>{selectedStockName}</Typography>
             {selectedStock && selectedStock.length > 0 ? (
                 <LineChart
-                    width={1000}
-                    height={500}
+                    width={1500}
+                    height={660}
                     data={reversedData}
                     margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
