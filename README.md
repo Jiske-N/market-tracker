@@ -61,6 +61,8 @@ Chat Gpt for assisting with mui styling and converting js into typescript.
 
 GitHub for hosting the repository.
 
+[EdRoh](https://www.youtube.com/watch?v=uoJ0Tv-BFcQ), [Code Commerce](https://www.youtube.com/watch?v=ZU-drSVodBw) and [Fullstack Simplified](https://www.youtube.com/watch?v=VwvXjZIo7ys) for the youtube tutorials.
+
 [Render](https://render.com) for hosting the deployed page.
 
 [MongoDb](https://www.mongodb.com) for hosting the deployed page.
